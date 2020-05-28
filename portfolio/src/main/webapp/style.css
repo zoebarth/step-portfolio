@@ -12,3 +12,17 @@
     width: 50%;
     height: auto;
 }
+
+#nav-link {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#intro {
+    background-image: url(/images/road.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    width: auto;
+}
