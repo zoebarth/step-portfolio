@@ -8,6 +8,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+  height: 50vh;
   margin-top: 30px;
   margin-bottom: 50px;
 }
@@ -45,4 +46,22 @@
 #right-div{
     width: 50%;
     float: right;
+}
+
+#projects {
+    height: 60vh;
+    margin-top: 100px;
+    background-color: #343a40;
+}
+
+#project-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    color: #f8f9fa;
+}
+
+#project-header {
+    padding: 30px;
 }
