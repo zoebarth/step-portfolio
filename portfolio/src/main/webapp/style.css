@@ -1,4 +1,4 @@
-#content {
+.content {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -17,18 +17,38 @@
 }
 
 #profile {
+<<<<<<< HEAD
     width: 50%;
     height: auto;
     float: right;
     margin-bottom: 30px;
+=======
+  width: 50%;
+  height: auto;
 }
 
-#nav-link {
-    margin-left: 5px;
-    margin-right: 5px;
+#nav-link-spacing {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #intro {
+  background-image: url(/images/road.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+>>>>>>> master
+}
+
+#nav-link {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#intro {
+<<<<<<< HEAD
     background-image: url(/images/road.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -45,4 +65,12 @@
 #right-div{
     width: 50%;
     float: right;
+=======
+  background-image: url(/images/road.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+>>>>>>> master
 }

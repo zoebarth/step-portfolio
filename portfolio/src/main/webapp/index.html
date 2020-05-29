@@ -13,7 +13,7 @@
   <body>
     
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-      <div id="content">
+      <div class="content">
         <button class="navbar-toggler" 
                 type="button" 
                 data-toggle="collapse" 
@@ -25,18 +25,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#" id="nav-link"> About Me </a>
-            <a class="nav-item nav-link" href="#" id="nav-link"> Projects</a>
-            <a class="nav-item nav-link" href="https://drive.google.com/file/d/1VKHkl4EohSEXkiEhnOc817ixpa1kctEW/view" id="nav-link">Resume</a>
-            <a class="nav-item nav-link" href="#" id="nav-link"> Contact Me</a>
+            <a class="nav-item nav-link nav-link-spacing active" href="#">About Me</a>
+            <a class="nav-item nav-link nav-link-spacing" href="#">Projects</a>
+            <a class="nav-item nav-link nav-link-spacing" href="https://drive.google.com/file/d/1VKHkl4EohSEXkiEhnOc817ixpa1kctEW/view">Resume</a>
+            <a class="nav-item nav-link nav-link-spacing" href="#">Contact Me</a>
           </div>
         </div>
       </div>
     </nav>
 
+    <!-- TODO: Add intro content. -->
     <section id="intro">
     </section>
 
+<<<<<<< HEAD
     <section id="about-me">
       <div id="left-div">
         <h1>About Me </h1>
@@ -53,6 +55,17 @@
       </div>
     </section>
 
+=======
+    <div class="content">
+      <h1 id="greeting-container">About Me</h1>
+      <p>Hi there! My name is Zoe Barth, and I'm a STEP Intern at Google. </p>
+      <img src="/images/profile.jpg" alt="Picture of me" id ="profile">
+      <p>Click here to learn something about me:</p>
+      <button onclick="addRandomGreeting()">Fun fact</button>
+      <div id="greeting-container"></div>
+    </div>
+    
+>>>>>>> master
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
             crossorigin="anonymous"></script>
