@@ -65,3 +65,24 @@
 #project-header {
   padding-top: 30px;
 }
+
+#parent-container {
+  height: 100%;
+}
+
+#center-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#zoe-barth {
+  color: #f8f9fa;
+  font-size: 6rem;
+  text-shadow: 3px;
+}
+
+#ga-tech {
+  color: #6c757d;
+}
