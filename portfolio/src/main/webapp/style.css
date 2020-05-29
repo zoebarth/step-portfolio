@@ -76,6 +76,7 @@
 
 #zoe-barth {
   color: #f8f9fa;
+  
   font-size: 6rem;
   text-align: center;
 }
@@ -96,4 +97,8 @@
   margin-right: 15px;
   width: 110px;
   text-align: center;
+}
+
+html{
+  scroll-behavior: smooth;
 }
