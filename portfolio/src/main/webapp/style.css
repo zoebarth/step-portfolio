@@ -8,7 +8,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  height: 50vh;
+  height: 45vh;
   margin-top: 30px;
   margin-bottom: 50px;
 }
@@ -18,50 +18,50 @@
 }
 
 #profile {
-    width: 50%;
-    height: auto;
-    float: right;
-    margin-bottom: 30px;
+  width: 50%;
+  height: auto;
+  float: right;
+  margin-bottom: 30px;
 }
 
 #nav-link {
-    margin-left: 5px;
-    margin-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #intro {
-    background-image: url(/images/road.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-    width: auto;
+  background-image: url(/images/road.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
 }
 
 #left-div {
-    width: 50%;
-    float: left;
+  width: 50%;
+  float: left;
 }
 
 #right-div{
-    width: 50%;
-    float: right;
+  width: 50%;
+  float: right;
 }
 
 #projects {
-    height: 60vh;
-    margin-top: 100px;
-    background-color: #343a40;
+  height: 60vh;
+  margin-top: 100px;
+  background-color: #343a40;
 }
 
 #project-container {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    color: #f8f9fa;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  color: #f8f9fa;
 }
 
 #project-header {
-    padding: 30px;
+  padding-top: 30px;
 }
