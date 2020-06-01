@@ -22,6 +22,12 @@
   display: flex;
 }
 
+#contact-me {
+  height: 35vh;
+  margin: 30px auto 50px auto;
+  width: 80%;
+}
+
 .content {
   margin: 0 auto;
   width: 80%;
@@ -77,7 +83,7 @@ html{
 
 #projects {
   background-color: #343a40;
-  height: 60vh;
+  height: 50vh;
   margin-top: 100px;
 }
 
