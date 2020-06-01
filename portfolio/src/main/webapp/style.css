@@ -1,62 +1,93 @@
-.content {
-  margin-left: auto;
-  margin-right: auto;
+#about-me {
+  height: 45vh;
+  margin: 30px auto 50px auto;
   width: 80%;
 }
 
-#about-me {
-  margin-left: auto;
-  margin-right: auto;
+#button-spacing {
+  margin: 20px 15px 5px 15px;
+  text-align: center;
+  width: 110px;
+}
+
+#center-intro {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.center-row {
+  justify-content: center;
+  display: flex;
+}
+
+.content {
+  margin: 0 auto;
   width: 80%;
-  margin-top: 30px;
-  margin-bottom: 50px;
+}
+
+#ga-tech {
+  color: #f8f9fa;
+  text-align: center;
 }
 
 #greeting-container {
   margin-top: 20px;
 }
 
-#profile {
-  width: 50%;
-  height: auto;
-  float: right;
-  margin-bottom: 30px;
-}
-
-#nav-link-spacing {
-  margin-left: 5px;
-  margin-right: 5px;
+html{
+  scroll-behavior: smooth;
 }
 
 #intro {
+  background-attachment: fixed;
   background-image: url(/images/road.jpg);
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 100vh;
-  width: auto;
-}
-
-#nav-link {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-#intro {
-  background-image: url(/images/road.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: cover;
   height: 100vh;
   width: auto;
 }
 
 #left-div {
-  width: 50%;
   float: left;
+  width: 50%;
+}
+
+.nav-link-spacing {
+  margin: 0 5px;
+}
+
+#profile {
+  float: right;
+  height: auto;
+  margin-bottom: 30px;
+  width: 50%;
+}
+
+#project-container {
+  color: #f8f9fa;
+  margin: 30px auto 0 auto;
+  width: 80%;
+}
+
+#project-header {
+  padding-top: 30px;
+}
+
+#projects {
+  background-color: #343a40;
+  height: 60vh;
+  margin-top: 100px;
 }
 
 #right-div{
-  width: 50%;
   float: right;
+  width: 50%;
+}
+
+#zoe-barth {
+  color: #f8f9fa;
+  font-size: 6rem;
+  text-align: center;
 }
