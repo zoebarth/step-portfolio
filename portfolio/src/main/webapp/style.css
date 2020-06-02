@@ -1,3 +1,7 @@
+/**
+ * Negative margin and positive padding allows links in header to scroll to the correct position.
+ * See https://stackoverflow.com/a/58890319
+ */
 #about-me {
   display: flex;
   margin: -30px auto 80px auto;
@@ -87,6 +91,10 @@ html{
   padding-top: 30px;
 }
 
+/**
+ * Negative margin and positive padding allows links in header to scroll to the correct position.
+ * See https://stackoverflow.com/a/58890319
+ */
 #projects {
   margin-top: -60px;
   min-height: 200px;
