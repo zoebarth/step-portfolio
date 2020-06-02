@@ -1,6 +1,11 @@
+/**
+ * Negative margin and positive padding allows links in header to scroll to the correct position.
+ * See https://stackoverflow.com/a/58890319
+ */
 #about-me {
-  height: 45vh;
-  margin: 30px auto 50px auto;
+  display: flex;
+  margin: -30px auto 80px auto;
+  padding-top: 60px;
   width: 80%;
 }
 
@@ -23,14 +28,19 @@
 }
 
 #contact-me {
-  height: 35vh;
   margin: 30px auto 50px auto;
+  padding-bottom: 100px;
   width: 80%;
 }
 
 .content {
   margin: 0 auto;
   width: 80%;
+}
+
+#dark-color {
+  background-color: #343a40;
+  display: flex;
 }
 
 #ga-tech {
@@ -40,6 +50,7 @@
 
 #greeting-container {
   margin-top: 20px;
+  min-height: 60px;
 }
 
 html{
@@ -56,7 +67,7 @@ html{
 }
 
 #left-div {
-  float: left;
+  justify-content: left;
   width: 50%;
 }
 
@@ -66,14 +77,13 @@ html{
 
 #profile {
   float: right;
-  height: auto;
-  margin-bottom: 30px;
-  width: 50%;
+  max-width: 450px;
+  width: 80%;
 }
 
 #project-container {
   color: #f8f9fa;
-  margin: 30px auto 0 auto;
+  margin: 0 auto 100px auto;
   width: 80%;
 }
 
@@ -81,14 +91,18 @@ html{
   padding-top: 30px;
 }
 
+/**
+ * Negative margin and positive padding allows links in header to scroll to the correct position.
+ * See https://stackoverflow.com/a/58890319
+ */
 #projects {
-  background-color: #343a40;
-  height: 50vh;
-  margin-top: 100px;
+  margin-top: -60px;
+  min-height: 200px;
+  padding-top: 60px;
 }
 
 #right-div{
-  float: right;
+  justify-content: right;
   width: 50%;
 }
 
