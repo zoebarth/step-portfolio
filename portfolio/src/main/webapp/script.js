@@ -34,6 +34,9 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+/**
+ * Fetches data from /data and displays it as html on index page.
+ */
 function fetchContent() {
   fetch("/data")
     .then((response) => response.text())
