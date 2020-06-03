@@ -26,16 +26,10 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> messages;
+  private ArrayList<String> messages = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //Hard code messages 
-    messages = new ArrayList<String>();
-    messages.add("How are you today?");
-    messages.add("I'm fine.");
-    messages.add("How are you?");
-
     //Convert messages to json
     Gson gson = new Gson();
     String json = gson.toJson(messages);
@@ -43,4 +37,11 @@ public class DataServlet extends HttpServlet {
     response.setContentType("text/html;");
     response.getWriter().println(json);
   }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String text = request.getParameter("comment");
+    messages.add(text);
+  }
+  
 }
