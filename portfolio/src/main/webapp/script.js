@@ -37,10 +37,8 @@ function addRandomGreeting() {
 /**
  * Fetches data from /data and displays it as html on index page.
  */
-function fetchContent() {
-  fetch('/data')
-    .then((response) => response.text())
-    .then((content) => {
-      document.getElementById('content-container').innerHTML = content;
-    });
+async function fetchContent() {
+  const response = await fetch('/data');
+  const commentText = await response.text();
+  document.getElementById('content-container').innerHTML = commentText;
 }
