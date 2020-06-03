@@ -42,12 +42,16 @@ async function fetchContent() {
   const messages = await response.json();
   const messagesElement = document.getElementById('content-container');
   messagesElement.innerHTML = '';
-  messagesElement.appendChild(createListElement(messages[0]));
-  messagesElement.appendChild(createListElement(messages[1]));
-  messagesElement.appendChild(createListElement(messages[2]));
+  for (message of messages) {
+    messagesElement.appendChild(createListElement(message));
+  }
 }
 
-/** Creates an <li> element containing text. */
+/**
+ * Creates an <li> element containing text.
+ * @param text the text to create list element with
+ * @return a list element
+ */
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
