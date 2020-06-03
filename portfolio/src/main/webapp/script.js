@@ -17,39 +17,34 @@
  */
 function addRandomGreeting() {
   const greetings = [
-    "I have lived in the same house my whole life!",
-    "I hate tomatoes!",
-    "I do aerial silks!",
-    "I studied abroad twice!",
-    "I took the picture above in New Zealand!",
-    "I went bunjee jumping and skydiving on the same day!",
-    "The picture to the right is from Barcelona!",
+    'I have lived in the same house my whole life!',
+    'I hate tomatoes!',
+    'I do aerial silks!',
+    'I studied abroad twice!',
+    'I took the picture above in New Zealand!',
+    'I went bunjee jumping and skydiving on the same day!',
+    'The picture to the right is from Barcelona!',
   ];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById("greeting-container");
+  const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
 
 /**
  * Fetches data from /data and displays it as html on index page.
  */
-function fetchContent() {
-  fetch("/data")
-    .then((response) => response.json())
-    .then((messages) => {
-      const messagesElement = document.getElementById('content-container');
-      messagesElement.innerHTML = '';
-      messagesElement.appendChild(
-          createListElement(messages[0]));
-      messagesElement.appendChild(
-          createListElement(messages[1]));
-      messagesElement.appendChild(
-          createListElement(messages[2]));
-    });
+async function fetchContent() {
+  const response = await fetch('/data');
+  const messages = await response.json();
+  const messagesElement = document.getElementById('content-container');
+  messagesElement.innerHTML = '';
+  messagesElement.appendChild(createListElement(messages[0]));
+  messagesElement.appendChild(createListElement(messages[1]));
+  messagesElement.appendChild(createListElement(messages[2]));
 }
 
 /** Creates an <li> element containing text. */
