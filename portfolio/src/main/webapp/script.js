@@ -16,12 +16,15 @@
  * Adds a random greeting to the page.
  */
 function addRandomGreeting() {
-  const greetings =
-      ['I have lived in the same house my whole life!', 
-      'I hate tomatoes!', 'I do aerial silks!', 
-      'I studied abroad twice!', 'I took the picture above in New Zealand!', 
-      'I went bunjee jumping and skydiving on the same day!',
-      'The picture to the right is from Barcelona!'];
+  const greetings = [
+    'I have lived in the same house my whole life!',
+    'I hate tomatoes!',
+    'I do aerial silks!',
+    'I studied abroad twice!',
+    'I took the picture above in New Zealand!',
+    'I went bunjee jumping and skydiving on the same day!',
+    'The picture to the right is from Barcelona!',
+  ];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
@@ -29,4 +32,13 @@ function addRandomGreeting() {
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
+}
+
+/**
+ * Fetches data from /data and displays it as html on index page.
+ */
+async function fetchContent() {
+  const response = await fetch('/data');
+  const commentText = await response.text();
+  document.getElementById('content-container').innerHTML = commentText;
 }

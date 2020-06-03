@@ -53,7 +53,7 @@
   min-height: 60px;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -101,7 +101,7 @@ html{
   padding-top: 60px;
 }
 
-#right-div{
+#right-div {
   justify-content: right;
   width: 50%;
 }
