@@ -22,6 +22,11 @@
   justify-content: center;
 }
 
+#comment {
+  max-width: 575px;
+  width: 60%;
+}
+
 .center-row {
   justify-content: center;
   display: flex;

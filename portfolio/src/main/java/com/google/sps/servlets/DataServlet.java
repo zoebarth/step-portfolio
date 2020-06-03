@@ -34,9 +34,6 @@ public class DataServlet extends HttpServlet {
    */
   public DataServlet() {
     messages = new ArrayList<String>();
-    messages.add("How are you today?");
-    messages.add("I'm fine.");
-    messages.add("How are you?");
     gson = new Gson();
   }
   
@@ -51,6 +48,8 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String text = request.getParameter("comment");
     messages.add(text);
+    response.setContentType("text/html;");
+    response.getWriter().println(messages);
   }
   
 }
