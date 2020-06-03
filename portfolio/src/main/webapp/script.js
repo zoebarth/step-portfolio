@@ -39,8 +39,22 @@ function addRandomGreeting() {
  */
 function fetchContent() {
   fetch("/data")
-    .then((response) => response.text())
-    .then((content) => {
-      document.getElementById("content-container").innerHTML = content;
+    .then((response) => response.json())
+    .then((messages) => {
+      const messagesElement = document.getElementById('content-container');
+      messagesElement.innerHTML = '';
+      messagesElement.appendChild(
+          createListElement(messages[0]));
+      messagesElement.appendChild(
+          createListElement(messages[1]));
+      messagesElement.appendChild(
+          createListElement(messages[2]));
     });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
