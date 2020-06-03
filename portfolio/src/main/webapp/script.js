@@ -33,3 +33,11 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById("greeting-container");
   greetingContainer.innerText = greeting;
 }
+
+function fetchContent() {
+  fetch("/data")
+    .then((response) => response.text())
+    .then((content) => {
+      document.getElementById("content-container").innerHTML = content;
+    });
+}
