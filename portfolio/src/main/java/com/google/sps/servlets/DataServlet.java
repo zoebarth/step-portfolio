@@ -25,26 +25,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 
-/** Servlet that returns some example content. */
+/** Servlet that handles posting and displaying comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private static final ArrayList<String> messages;
-  private static final Gson gson;
+  private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-  /** 
-   * Initializes comments and gson variables
-   */
-  public DataServlet() {
-    comments = new ArrayList<String>();
-    gson = new Gson();
-  }
-  
+  //TODO: implement this method to display comments
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = gson.toJson(comments);
-    response.setContentType("application/json");
-    response.getWriter().println(json);
   }
 
   @Override
@@ -55,8 +44,6 @@ public class DataServlet extends HttpServlet {
     Entity comment = new Entity("Comment");
     comment.setProperty("text", text);
     comment.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(comment);
     
     response.sendRedirect("/index.html#contact-me");
