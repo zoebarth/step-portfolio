@@ -29,20 +29,20 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private static ArrayList<String> messages;
+  private static ArrayList<String> comments;
   private static Gson gson;
 
   /** 
-   * Initializes messages and gson variables
+   * Initializes comments and gson variables
    */
   public DataServlet() {
-    messages = new ArrayList<String>();
+    comments = new ArrayList<String>();
     gson = new Gson();
   }
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = gson.toJson(messages);
+    String json = gson.toJson(comments);
     response.setContentType("application/json");
     response.getWriter().println(json);
   }
