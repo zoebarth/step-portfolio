@@ -30,20 +30,26 @@ public class DataServlet extends HttpServlet {
   private static final Gson gson;
 
   /** 
-   * Initializes messages and gson variables
+   * Initializes comments and gson variables
    */
   public DataServlet() {
-    messages = new ArrayList<String>();
-    messages.add("How are you today?");
-    messages.add("I'm fine.");
-    messages.add("How are you?");
+    comments = new ArrayList<String>();
     gson = new Gson();
   }
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = gson.toJson(messages);
+    String json = gson.toJson(comments);
     response.setContentType("application/json");
     response.getWriter().println(json);
   }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String text = request.getParameter("comment");
+    comments.add(text);
+    response.setContentType("text/html;");
+    response.getWriter().println(comments);
+  }
+  
 }

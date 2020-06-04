@@ -166,9 +166,15 @@
       <div>
         <h1>Contact Me</h1>
         <br />
-        <p>Send me an email at zoe.barth@gmail.com!</p>
-        <button onclick="fetchContent()">Fetch content</button>
-        <div id="content-container"></div>
+        <p>
+          Feel free to write me an email at zoe.barth@gmail.com or leave a
+          comment below:
+        </p>
+        <form action="/data" method="POST">
+          <textarea id="comment" name="comment"> </textarea>
+          <br />
+          <input type="submit" class="btn btn-dark" />
+        </form>
       </div>
     </section>
 
