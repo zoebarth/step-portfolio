@@ -29,8 +29,8 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private static ArrayList<String> comments;
-  private static Gson gson;
+  private static final ArrayList<String> messages;
+  private static final Gson gson;
 
   /** 
    * Initializes comments and gson variables
