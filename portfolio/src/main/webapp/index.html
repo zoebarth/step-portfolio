@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="fetchContent()">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div id="content">
         <button
@@ -175,6 +175,9 @@
           <br />
           <input type="submit" class="btn btn-dark" />
         </form>
+        <br />
+        <p> Here are the comments: </p>
+        <div id="comments-container"> </div>
       </div>
     </section>
 
