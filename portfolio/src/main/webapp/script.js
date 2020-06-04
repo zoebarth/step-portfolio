@@ -49,8 +49,8 @@ async function fetchContent() {
 
 /**
  * Creates an <li> element containing text.
- * @param text the text to create list element with
- * @return a list element
+ * @param {string} text The text to create list element with
+ * @return {Element} a list element
  */
 function createListElement(text) {
   const liElement = document.createElement('li');
