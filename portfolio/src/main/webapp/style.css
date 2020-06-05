@@ -22,15 +22,19 @@
   justify-content: center;
 }
 
+.center-row {
+  justify-content: center;
+  display: flex;
+}
+
 #comment {
   margin-bottom: 10px;
   max-width: 575px;
   width: 60%;
 }
 
-.center-row {
-  justify-content: center;
-  display: flex;
+#comments-container {
+  margin-bottom: 15px;
 }
 
 /**

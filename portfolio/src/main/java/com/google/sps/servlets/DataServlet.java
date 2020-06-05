@@ -17,6 +17,8 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.FetchOptions.Builder;
 import com.google.gson.Gson;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -40,12 +42,24 @@ public class DataServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
+    String limitString = request.getParameter("limit");
+
+    // Use FetchOptions to limit number of comments.
+    FetchOptions fetch;
+    try {
+      fetch = FetchOptions.Builder.withLimit(Integer.parseInt(limitString));
+    } catch (NumberFormatException e) {
+      fetch = FetchOptions.Builder.withDefaults();
+    }
+
+    // Add comments to ArrayList. 
     ArrayList<String> comments = new ArrayList<String>();
-    for (Entity entity : results.asIterable()) {
+    for (Entity entity : results.asIterable(fetch)) {
       String text = (String) entity.getProperty("text");
       comments.add(text);
     }
 
+    // Send response with comments written as json.
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }

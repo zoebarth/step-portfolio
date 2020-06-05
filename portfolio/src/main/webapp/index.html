@@ -171,13 +171,20 @@
           comment below:
         </p>
         <form action="/data" method="POST">
-          <textarea id="comment" name="comment"> </textarea>
+          <textarea id="comment" name="comment" class="form-control" rows="5"> </textarea>
           <br />
           <input type="submit" class="btn btn-dark" />
         </form>
         <br />
         <p> Here are the comments: </p>
         <div id="comments-container"> </div>
+        <p> Number of comments to display:
+        <select name="limit" id="limit" class="selectpicker" onchange="fetchContent()"> 
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="all">All</option>
+        </select>
       </div>
     </section>
 
