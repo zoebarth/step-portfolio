@@ -40,10 +40,27 @@ public class DataServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
+    String limitString = request.getParameter("limit");
+
+    // Convert the input to an int.
+    int limit;
+    try {
+      limit = Integer.parseInt(limitString);
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + limitString);
+      limit = -1;
+    }
+
     ArrayList<String> comments = new ArrayList<String>();
+    int i = 0;
     for (Entity entity : results.asIterable()) {
-      String text = (String) entity.getProperty("text");
-      comments.add(text);
+      if (i < limit || limit == -1) {
+        String text = (String) entity.getProperty("text");
+        comments.add(text);
+        i++;
+      } else {
+        break;
+      }
     }
 
     response.setContentType("application/json;");
