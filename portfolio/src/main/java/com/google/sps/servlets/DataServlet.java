@@ -75,7 +75,6 @@ public class DataServlet extends HttpServlet {
     
     datastore.put(comment);
     
-    response.sendRedirect("/index.html#contact-me");
   }
   
 }

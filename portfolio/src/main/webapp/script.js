@@ -70,3 +70,16 @@ async function deleteComments() {
   const messagesElement = document.getElementById('comments-container');
   messagesElement.innerHTML = '';
 }
+
+function handleSubmit(e) {
+  e.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: '/data',
+    data: $(this).serialize(),
+    success: () => fetchContent(),
+  });
+  $(this).find('input,textarea').val('');
+}
+
+$('#comment-form').submit(handleSubmit);
