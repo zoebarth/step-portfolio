@@ -39,7 +39,12 @@ function addRandomGreeting() {
  */
 async function fetchContent() {
   const limit = document.getElementById('limit').value;
-  const response = await fetch(`/data?limit=${limit}`);
+  let response;
+  if (limit === 'all') {
+    response = await fetch('/data');
+  } else {
+    response = await fetch(`/data?limit=${limit}`);
+  }
   const messages = await response.json();
   const messagesElement = document.getElementById('comments-container');
   messagesElement.innerHTML = '';
