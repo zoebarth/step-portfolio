@@ -176,15 +176,14 @@
           <button type="submit" class="btn btn-dark">Submit </button>
         </form>
         <br />
-        <p> Here are the comments: </p>
-        <div id="comments-container"> </div>
-        <p> Number of comments to display:
+        <p> Comments displayed:
         <select name="limit" id="limit" class="selectpicker" onchange="fetchContent()"> 
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="all">All</option>
         </select>
+        <div id="comments-container"> </div>
         <br />
         <button class="btn btn-danger btn-sm" onclick="deleteComments()">Delete all comments</button>
       </div>
