@@ -38,7 +38,8 @@ function addRandomGreeting() {
  * Fetches data from /data and displays it as html on index page.
  */
 async function fetchContent() {
-  const response = await fetch('/data?limit=2');
+  const limit = document.getElementById('limit').value;
+  const response = await fetch(`/data?limit=${limit}`);
   const messages = await response.json();
   const messagesElement = document.getElementById('comments-container');
   messagesElement.innerHTML = '';
