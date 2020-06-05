@@ -17,6 +17,8 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.FetchOptions.Builder;
 import com.google.gson.Gson;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -42,27 +44,22 @@ public class DataServlet extends HttpServlet {
 
     String limitString = request.getParameter("limit");
 
-    // Convert the input to an int.
-    int limit;
+    // Use FetchOptions to limit number of comments
+    FetchOptions fetch;
     try {
-      limit = Integer.parseInt(limitString);
+      fetch = FetchOptions.Builder.withLimit(Integer.parseInt(limitString));
     } catch (NumberFormatException e) {
-      System.err.println("Could not convert to int: " + limitString);
-      limit = -1;
+      fetch = FetchOptions.Builder.withDefaults();
     }
 
+    //Add comments to ArrayList 
     ArrayList<String> comments = new ArrayList<String>();
-    int i = 0;
-    for (Entity entity : results.asIterable()) {
-      if (i < limit || limit == -1) {
-        String text = (String) entity.getProperty("text");
-        comments.add(text);
-        i++;
-      } else {
-        break;
-      }
+    for (Entity entity : results.asIterable(fetch)) {
+      String text = (String) entity.getProperty("text");
+      comments.add(text);
     }
 
+    //Send response with comments written as json
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
