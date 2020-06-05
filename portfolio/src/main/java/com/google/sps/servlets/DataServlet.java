@@ -44,7 +44,7 @@ public class DataServlet extends HttpServlet {
 
     String limitString = request.getParameter("limit");
 
-    // Use FetchOptions to limit number of comments
+    // Use FetchOptions to limit number of comments.
     FetchOptions fetch;
     try {
       fetch = FetchOptions.Builder.withLimit(Integer.parseInt(limitString));
@@ -52,14 +52,14 @@ public class DataServlet extends HttpServlet {
       fetch = FetchOptions.Builder.withDefaults();
     }
 
-    //Add comments to ArrayList 
+    // Add comments to ArrayList. 
     ArrayList<String> comments = new ArrayList<String>();
     for (Entity entity : results.asIterable(fetch)) {
       String text = (String) entity.getProperty("text");
       comments.add(text);
     }
 
-    //Send response with comments written as json
+    // Send response with comments written as json.
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
