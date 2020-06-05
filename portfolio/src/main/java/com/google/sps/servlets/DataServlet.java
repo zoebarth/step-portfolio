@@ -74,7 +74,6 @@ public class DataServlet extends HttpServlet {
     comment.setProperty("timestamp", timestamp);
     
     datastore.put(comment);
-    
   }
   
 }
