@@ -63,3 +63,10 @@ function createListElement(text) {
   liElement.innerText = text;
   return liElement;
 }
+
+/** Tells the server to delete all comments and reloads comments sections. */
+async function deleteComments() {
+  await fetch('/delete-data', {method: 'POST'});
+  const messagesElement = document.getElementById('comments-container');
+  messagesElement.innerHTML = '';
+}
