@@ -14,7 +14,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
   </head>
   <body onload="fetchContent()">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -170,31 +169,27 @@
           Feel free to write me an email at zoe.barth@gmail.com or leave a
           comment below:
         </p>
-        <form action="/data" method="POST">
+        <form id="comment-form">
           <textarea id="comment" name="comment" class="form-control" rows="5"> </textarea>
           <br />
-          <input type="submit" class="btn btn-dark" />
+          <button type="submit" class="btn btn-dark">Submit</button>
         </form>
         <br />
-        <p> Here are the comments: </p>
-        <div id="comments-container"> </div>
-        <p> Number of comments to display:
-        <select name="limit" id="limit" class="selectpicker" onchange="fetchContent()"> 
+        <p> Comments displayed:
+        <select name="limit" id="limit" class="selectpicker" onchange="fetchContent()">
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="all">All</option>
         </select>
+        <div id="comments-container"> </div>
         <br />
         <button class="btn btn-danger btn-sm" onclick="deleteComments()">Delete all comments</button>
       </div>
     </section>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

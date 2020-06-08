@@ -74,8 +74,6 @@ public class DataServlet extends HttpServlet {
     comment.setProperty("timestamp", timestamp);
     
     datastore.put(comment);
-    
-    response.sendRedirect("/index.html#contact-me");
   }
   
 }
