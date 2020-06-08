@@ -77,7 +77,7 @@ function handleSubmit(e) {
     type: 'POST',
     url: '/data',
     data: $(this).serialize(),
-    success: fetchContent(),
+    success: fetchContent,
   });
   $(this).find('input,textarea').val('');
 }
