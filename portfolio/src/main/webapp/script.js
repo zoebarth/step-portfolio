@@ -71,7 +71,7 @@ async function deleteComments() {
   messagesElement.innerHTML = '';
 }
 
-async function authenticate() {
+async function loginStatus() {
   const response = await fetch('/login');
   const login = await response.json();
   const loginElement = document.getElementById('login-container');
