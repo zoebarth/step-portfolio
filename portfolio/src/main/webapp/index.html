@@ -165,6 +165,10 @@
       <div>
         <h1>Contact Me</h1>
         <br />
+        <button class="btn btn-dark" onclick="authenticate()">
+          Login
+        </button>
+        <div id="login-container"> </div>
         <p>
           Feel free to write me an email at zoe.barth@gmail.com or leave a
           comment below:
@@ -175,7 +179,7 @@
           <button type="submit" class="btn btn-dark">Submit</button>
         </form>
         <br />
-        <p> Comments displayed:
+        <p>Comments displayed:</p>
         <select name="limit" id="limit" class="selectpicker" onchange="fetchContent()">
           <option value="5">5</option>
           <option value="10">10</option>

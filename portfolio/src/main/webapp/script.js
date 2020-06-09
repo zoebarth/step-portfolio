@@ -71,6 +71,16 @@ async function deleteComments() {
   messagesElement.innerHTML = '';
 }
 
+async function authenticate() {
+  const response = await fetch('/login');
+  const login = await response.json();
+  const loginElement = document.getElementById('login-container');
+  const a = document.createElement('a');
+  a.innerText = "Click here";
+  a.href = login;
+  loginElement.appendChild(a);
+}
+
 function handleSubmit(e) {
   e.preventDefault();
   $.ajax({
