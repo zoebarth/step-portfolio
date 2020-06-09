@@ -54,7 +54,7 @@ async function fetchContent() {
 }
 
 /**
- * Creates an <div> element containing author and comment.
+ * Creates a <div> element containing author and comment.
  * @param {string} text The text to create list element with
  * @return {Element} a div element
  */
