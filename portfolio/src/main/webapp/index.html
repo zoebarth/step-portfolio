@@ -165,27 +165,35 @@
       <div>
         <h1>Contact Me</h1>
         <br />
-        <div id="login-container"> </div>
+        <div id="login-container"></div>
         <p>
           Feel free to write me an email at zoe.barth@gmail.com or leave a
           comment below:
         </p>
         <form id="comment-form">
-          <textarea id="comment" name="comment" class="form-control" rows="5"> </textarea>
+          <textarea id="comment" name="comment" class="form-control" rows="5">
+          </textarea>
           <br />
           <button type="submit" class="btn btn-dark">Submit</button>
         </form>
         <br />
         <p>Comments displayed:</p>
-        <select name="limit" id="limit" class="selectpicker" onchange="fetchContent()">
+        <select
+          name="limit"
+          id="limit"
+          class="selectpicker"
+          onchange="fetchContent()"
+        >
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="all">All</option>
         </select>
-        <div id="comments-container"> </div>
+        <div id="comments-container"></div>
         <br />
-        <button class="btn btn-danger btn-sm" onclick="deleteComments()">Delete all comments</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteComments()">
+          Delete all comments
+        </button>
       </div>
     </section>
 

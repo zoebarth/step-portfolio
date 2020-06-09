@@ -66,21 +66,23 @@ function createListElement(text) {
 
 /** Tells the server to delete all comments and reloads comments sections. */
 async function deleteComments() {
-  await fetch('/delete-data', {method: 'POST'});
+  await fetch('/delete-data', { method: 'POST' });
   const messagesElement = document.getElementById('comments-container');
   messagesElement.innerHTML = '';
 }
 
+/**Creates an a element that allows user to login or logout */
 async function loginStatus() {
   const response = await fetch('/login');
   const login = await response.json();
   const loginElement = document.getElementById('login-container');
   const a = document.createElement('a');
-  a.innerText = "Click here";
+  a.innerText = login;
   a.href = login;
   loginElement.appendChild(a);
 }
 
+/**Prevents page from refreshing when submitting comments */
 function handleSubmit(e) {
   e.preventDefault();
   $.ajax({
