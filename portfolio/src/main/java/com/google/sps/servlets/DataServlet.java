@@ -19,21 +19,20 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.FetchOptions.Builder;
-import com.google.gson.Gson;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /** Servlet that handles posting and displaying comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
   private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private static final Gson gson = new Gson();
 
@@ -52,7 +51,7 @@ public class DataServlet extends HttpServlet {
       fetch = FetchOptions.Builder.withDefaults();
     }
 
-    // Add comments to ArrayList. 
+    // Add comments to ArrayList.
     ArrayList<String> comments = new ArrayList<String>();
     for (Entity entity : results.asIterable(fetch)) {
       String text = (String) entity.getProperty("text");
@@ -72,8 +71,7 @@ public class DataServlet extends HttpServlet {
     Entity comment = new Entity("Comment");
     comment.setProperty("text", text);
     comment.setProperty("timestamp", timestamp);
-    
+
     datastore.put(comment);
   }
-  
 }
