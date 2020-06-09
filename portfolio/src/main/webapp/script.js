@@ -54,14 +54,27 @@ async function fetchContent() {
 }
 
 /**
- * Creates an <li> element containing text.
+ * Creates an <div> element containing author and comment.
  * @param {string} text The text to create list element with
- * @return {Element} a list element
+ * @return {Element} a div element
  */
 function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+  const divElement = document.createElement('div');
+  divElement.setAttribute('class', 'comment-box');
+
+  //Set name
+  const name = document.createElement('p');
+  //TODO: Include user name
+  name.setAttribute('class', 'comment-name');
+  name.innerText = 'test@example.com';
+  divElement.appendChild(name);
+
+  //Set comment
+  const comment = document.createElement('p');
+  comment.innerText = text;
+  divElement.appendChild(comment);
+
+  return divElement;
 }
 
 /** Tells the server to delete all comments and reloads comments sections. */
