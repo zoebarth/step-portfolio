@@ -25,12 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginStatusServlet extends HttpServlet {
-
   private static final Gson gson = new Gson();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-   response.setContentType("application/json;");
+    response.setContentType("application/json;");
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       String urlToRedirectToAfterUserLogsOut = "/";

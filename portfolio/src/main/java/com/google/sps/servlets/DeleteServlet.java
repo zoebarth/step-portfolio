@@ -28,7 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that handles deleting all comments */
 @WebServlet("/delete-data")
 public class DeleteServlet extends HttpServlet {
-
   private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
