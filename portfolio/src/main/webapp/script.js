@@ -87,12 +87,9 @@ async function deleteComments() {
 /** Creates an a element that allows user to login or logout */
 async function loginStatus() {
   const response = await fetch('/login');
-  const login = await response.json();
+  const login = await response.text();
   const loginElement = document.getElementById('login-container');
-  const a = document.createElement('a');
-  a.innerText = login;
-  a.href = login;
-  loginElement.appendChild(a);
+  loginElement.innerHTML = login;
 }
 
 /** Prevents page from refreshing when submitting comments */
