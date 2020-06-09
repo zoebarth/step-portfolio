@@ -71,7 +71,7 @@ async function deleteComments() {
   messagesElement.innerHTML = '';
 }
 
-/**Creates an a element that allows user to login or logout */
+/** Creates an a element that allows user to login or logout */
 async function loginStatus() {
   const response = await fetch('/login');
   const login = await response.json();
@@ -82,7 +82,7 @@ async function loginStatus() {
   loginElement.appendChild(a);
 }
 
-/**Prevents page from refreshing when submitting comments */
+/** Prevents page from refreshing when submitting comments */
 function handleSubmit(e) {
   e.preventDefault();
   $.ajax({
