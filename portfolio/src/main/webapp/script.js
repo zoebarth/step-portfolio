@@ -30,8 +30,8 @@ function addRandomGreeting() {
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const greetingContainer = $('#greeting-container');
+  greetingContainer.text(greeting);
 }
 
 /**
@@ -46,10 +46,10 @@ async function fetchContent() {
     response = await fetch(`/data?limit=${limit}`);
   }
   const messages = await response.json();
-  const messagesElement = document.getElementById('comments-container');
-  messagesElement.innerHTML = '';
+  const messagesEl = $('#comments-container');
+  messagesEl.empty();
   for (message of messages) {
-    messagesElement.appendChild(createListElement(message));
+    messagesEl.append(createListElement(message));
   }
 }
 
@@ -59,22 +59,11 @@ async function fetchContent() {
  * @return {Element} a div element
  */
 function createListElement(text) {
-  const divElement = document.createElement('div');
-  divElement.setAttribute('class', 'comment-box');
-
-  // Set name
-  const name = document.createElement('p');
-  // TODO: Include user name
-  name.setAttribute('class', 'comment-name');
-  name.innerText = 'test@example.com';
-  divElement.appendChild(name);
-
-  // Set comment
-  const comment = document.createElement('p');
-  comment.innerText = text;
-  divElement.appendChild(comment);
-
-  return divElement;
+  return $(`<div class="comment-box">
+      <p class="comment-name">test@example.com</p>
+      <p>${text}</p>
+    </div>
+  `);
 }
 
 /** Tells the server to delete all comments and reloads comments sections. */
@@ -91,12 +80,16 @@ async function loginStatus() {
   if (login.loggedIn === true) {
     $('#drop-a-comment').show();
     $('#comment-form').show();
-    const logoutConatiner = document.getElementById('logout-container');
-    logoutConatiner.innerHTML = `You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.`;
+    const logoutContainer = $('#logout-container');
+    logoutContainer.html(
+      `<p>You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.<\p>`
+    );
   } else {
     $('#login-here').show();
-    const loginConatiner = document.getElementById('login-container');
-    loginConatiner.innerHTML = `<a href=${login.loginUrl} class="btn btn-dark">Login</a>`;
+    const loginConatiner = $('#login-container');
+    loginConatiner.html(
+      `<a href=${login.loginUrl} class="btn btn-dark">Login Here</a>`
+    );
   }
 }
 
