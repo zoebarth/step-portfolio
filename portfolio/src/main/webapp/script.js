@@ -81,8 +81,11 @@ async function loginStatus() {
   if (login.loggedIn === true) {
     $('#drop-a-comment').show();
     $('#comment-form').show();
-    $('#logout-container').html(`
-    <p>You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.</p>
+    $('#logout-container').html(html`
+      <p>
+        You are currently logged in as ${login.userEmail}. Click
+        <a href=${login.logoutUrl}>here</a> to sign out.
+      </p>
     `);
   } else {
     $('#login-here').show();
