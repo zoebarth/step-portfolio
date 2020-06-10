@@ -30,8 +30,7 @@ function addRandomGreeting() {
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
   // Add it to the page.
-  const greetingContainer = $('#greeting-container');
-  greetingContainer.text(greeting);
+  $('#greeting-container').text(greeting);
 }
 
 /**
@@ -59,7 +58,8 @@ async function fetchContent() {
  * @return {Element} a div element
  */
 function createListElement(author, text) {
-  return $(`<div class="comment-box">
+  return $(html`
+    <div class="comment-box">
       <p class="comment-name">${author}</p>
       <p>${text}</p>
     </div>
@@ -80,14 +80,12 @@ async function loginStatus() {
   if (login.loggedIn === true) {
     $('#drop-a-comment').show();
     $('#comment-form').show();
-    const logoutContainer = $('#logout-container');
-    logoutContainer.html(
+    $('#logout-container').html(
       `<p>You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.<\p>`
     );
   } else {
     $('#login-here').show();
-    const loginConatiner = $('#login-container');
-    loginConatiner.html(
+    $('#login-container').html(
       `<a href=${login.loginUrl} class="btn btn-dark">Login Here</a>`
     );
   }
