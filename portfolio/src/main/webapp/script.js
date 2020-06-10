@@ -89,7 +89,7 @@ async function loginStatus() {
     `);
   } else {
     $('#login-here').show();
-    $('#login-container').html(html`
+    $('#login-container').html(`
       <a href=${login.loginUrl} class="btn btn-dark">Login Here</a>
     `);
   }
