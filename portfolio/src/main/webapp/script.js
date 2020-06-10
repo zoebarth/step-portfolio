@@ -87,9 +87,17 @@ async function deleteComments() {
 /** Creates an a element that allows user to login or logout */
 async function loginStatus() {
   const response = await fetch('/login');
-  const login = await response.text();
-  const loginElement = document.getElementById('login-container');
-  loginElement.innerHTML = login;
+  const login = await response.json();
+  if (login.loggedIn == 'true') {
+    $('#drop-a-comment').show();
+    $('#comment-form').show();
+    const logoutConatiner = document.getElementById('logout-container');
+    logoutConatiner.innerHTML = `You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.`;
+  } else {
+    $('#login-here').show();
+    const loginConatiner = document.getElementById('login-container');
+    loginConatiner.innerHTML = `<a href=${login.loginUrl} class="btn btn-dark">Login</a>`;
+  }
 }
 
 /** Prevents page from refreshing when submitting comments */

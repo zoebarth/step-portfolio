@@ -17,6 +17,9 @@ package com.google.sps.servlets;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,21 +28,27 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginStatusServlet extends HttpServlet {
-  private static final Gson gson = new Gson();
-
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
-      String urlToRedirectToAfterUserLogsOut = "/";
+      String urlToRedirectToAfterUserLogsOut = "/index.html#contact-me";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-      response.getWriter().println("<p>You are currently logged in as " + userEmail + ". Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
+      JsonObject json = new JsonObject();
+      json.addProperty("loggedIn", "true");
+      json.addProperty("userEmail", userEmail);
+      json.addProperty("logoutUrl", logoutUrl);
+      response.getWriter().println(json);
     } else {
-      String urlToRedirectToAfterUserLogsIn = "/";
+      String urlToRedirectToAfterUserLogsIn = "/index.html#contact-me";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-      response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
+      JsonObject json = new JsonObject();
+      json.addProperty("loggedIn", "false");
+      json.addProperty("loginUrl", loginUrl);
+      response.getWriter().println(json);
     }
   }
 }
