@@ -62,14 +62,14 @@ function createListElement(text) {
   const divElement = document.createElement('div');
   divElement.setAttribute('class', 'comment-box');
 
-  //Set name
+  // Set name
   const name = document.createElement('p');
-  //TODO: Include user name
+  // TODO: Include user name
   name.setAttribute('class', 'comment-name');
   name.innerText = 'test@example.com';
   divElement.appendChild(name);
 
-  //Set comment
+  // Set comment
   const comment = document.createElement('p');
   comment.innerText = text;
   divElement.appendChild(comment);
@@ -88,7 +88,7 @@ async function deleteComments() {
 async function loginStatus() {
   const response = await fetch('/login');
   const login = await response.json();
-  if (login.loggedIn == 'true') {
+  if (login.loggedIn === true) {
     $('#drop-a-comment').show();
     $('#comment-form').show();
     const logoutConatiner = document.getElementById('logout-container');

@@ -31,24 +31,22 @@ public class LoginStatusServlet extends HttpServlet {
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json;");
+    JsonObject json = new JsonObject();
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
       String urlToRedirectToAfterUserLogsOut = "/index.html#contact-me";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-      JsonObject json = new JsonObject();
-      json.addProperty("loggedIn", "true");
+      json.addProperty("loggedIn", true);
       json.addProperty("userEmail", userEmail);
       json.addProperty("logoutUrl", logoutUrl);
-      response.getWriter().println(json);
     } else {
       String urlToRedirectToAfterUserLogsIn = "/index.html#contact-me";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-      JsonObject json = new JsonObject();
-      json.addProperty("loggedIn", "false");
+      json.addProperty("loggedIn", false);
       json.addProperty("loginUrl", loginUrl);
-      response.getWriter().println(json);
     }
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
 }
