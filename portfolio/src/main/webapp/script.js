@@ -48,17 +48,18 @@ async function fetchContent() {
   const messagesEl = $('#comments-container');
   messagesEl.empty();
   for (message of messages) {
-    messagesEl.append(createListElement(message[0], message[1]));
+    messagesEl.append(createListElement(message.author, message.text));
   }
 }
 
 /**
  * Creates a <div> element containing author and comment.
- * @param {string} text The text to create list element with
+ * @param {string} author The author of the comment
+ * @param {string} text The text of the comment
  * @return {Element} a div element
  */
 function createListElement(author, text) {
-  return $(html`
+  return $(`
     <div class="comment-box">
       <p class="comment-name">${author}</p>
       <p>${text}</p>

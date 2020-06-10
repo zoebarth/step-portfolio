@@ -25,6 +25,9 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
@@ -55,11 +58,11 @@ public class DataServlet extends HttpServlet {
     }
 
     // Add comments to ArrayList.
-    ArrayList<ArrayList<String>> comments = new ArrayList<ArrayList<String>>();
+    JsonArray comments = new JsonArray();
     for (Entity entity : results.asIterable(fetch)) {
-      ArrayList<String> comment = new ArrayList<String>();
-      comment.add((String) entity.getProperty("email"));
-      comment.add((String) entity.getProperty("text"));
+      JsonObject comment = new JsonObject();
+      comment.addProperty("author", (String) entity.getProperty("email"));
+      comment.addProperty("text", (String) entity.getProperty("text"));
       comments.add(comment);
     }
 
