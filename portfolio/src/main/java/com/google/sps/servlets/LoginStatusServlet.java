@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginStatusServlet extends HttpServlet {
-  private static UserService userService = UserServiceFactory.getUserService();
+  private static final UserService userService = UserServiceFactory.getUserService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
