@@ -30,8 +30,7 @@ function addRandomGreeting() {
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  $('#greeting-container').text(greeting);
 }
 
 /**
@@ -46,22 +45,25 @@ async function fetchContent() {
     response = await fetch(`/data?limit=${limit}`);
   }
   const messages = await response.json();
-  const messagesElement = document.getElementById('comments-container');
-  messagesElement.innerHTML = '';
+  const messagesEl = $('#comments-container');
+  messagesEl.empty();
   for (message of messages) {
-    messagesElement.appendChild(createListElement(message));
+    messagesEl.append(createListElement(message));
   }
 }
 
 /**
- * Creates an <li> element containing text.
+ * Creates a <div> element containing author and comment.
  * @param {string} text The text to create list element with
- * @return {Element} a list element
+ * @return {Element} a div element
  */
 function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+  return $(html`
+    <div class="comment-box">
+      <p class="comment-name">test@example.com</p>
+      <p>${text}</p>
+    </div>
+  `);
 }
 
 /** Tells the server to delete all comments and reloads comments sections. */
@@ -75,11 +77,18 @@ async function deleteComments() {
 async function loginStatus() {
   const response = await fetch('/login');
   const login = await response.json();
-  const loginElement = document.getElementById('login-container');
-  const a = document.createElement('a');
-  a.innerText = login;
-  a.href = login;
-  loginElement.appendChild(a);
+  if (login.loggedIn === true) {
+    $('#drop-a-comment').show();
+    $('#comment-form').show();
+    $('#logout-container').html(
+      `<p>You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.<\p>`
+    );
+  } else {
+    $('#login-here').show();
+    $('#login-container').html(
+      `<a href=${login.loginUrl} class="btn btn-dark">Login Here</a>`
+    );
+  }
 }
 
 /** Prevents page from refreshing when submitting comments */

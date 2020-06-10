@@ -33,6 +33,19 @@
   width: 60%;
 }
 
+.comment-box {
+  outline: 1px solid #ced4da;
+}
+
+#comment-form {
+  display: none;
+}
+
+.comment-name {
+  color: gray;
+  margin-bottom: 0px;
+}
+
 #comments-container {
   margin-bottom: 15px;
 }
@@ -55,6 +68,11 @@
 #dark-color {
   background-color: #343a40;
   display: flex;
+}
+
+#drop-a-comment {
+  margin-top: 40px;
+  display: none;
 }
 
 #ga-tech {
@@ -83,6 +101,11 @@ html {
 #left-div {
   justify-content: left;
   width: 50%;
+}
+
+#login-here {
+  margin-top: 40px;
+  display: none;
 }
 
 .nav-link-spacing {
