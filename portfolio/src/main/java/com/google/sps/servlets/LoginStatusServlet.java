@@ -28,11 +28,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginStatusServlet extends HttpServlet {
-  
+  private static UserService userService = UserServiceFactory.getUserService();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     JsonObject json = new JsonObject();
-    UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
       String urlToRedirectToAfterUserLogsOut = "/index.html#contact-me";
