@@ -39,8 +39,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  private final Gson gson = new Gson();
-  private final UserService userService = UserServiceFactory.getUserService();
+  private static final UserService userService = UserServiceFactory.getUserService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -68,7 +67,7 @@ public class DataServlet extends HttpServlet {
 
     // Send response with comments written as json.
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
+    response.getWriter().println(comments);
   }
 
   @Override
