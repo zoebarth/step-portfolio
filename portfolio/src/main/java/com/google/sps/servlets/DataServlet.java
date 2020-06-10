@@ -55,10 +55,12 @@ public class DataServlet extends HttpServlet {
     }
 
     // Add comments to ArrayList.
-    ArrayList<String> comments = new ArrayList<String>();
+    ArrayList<ArrayList<String>> comments = new ArrayList<ArrayList<String>>();
     for (Entity entity : results.asIterable(fetch)) {
-      String text = (String) entity.getProperty("text");
-      comments.add(text);
+      ArrayList<String> comment = new ArrayList<String>();
+      comment.add((String) entity.getProperty("email"));
+      comment.add((String) entity.getProperty("text"));
+      comments.add(comment);
     }
 
     // Send response with comments written as json.

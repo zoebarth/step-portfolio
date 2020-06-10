@@ -49,7 +49,7 @@ async function fetchContent() {
   const messagesEl = $('#comments-container');
   messagesEl.empty();
   for (message of messages) {
-    messagesEl.append(createListElement(message));
+    messagesEl.append(createListElement(message[0], message[1]));
   }
 }
 
@@ -58,9 +58,9 @@ async function fetchContent() {
  * @param {string} text The text to create list element with
  * @return {Element} a div element
  */
-function createListElement(text) {
+function createListElement(author, text) {
   return $(`<div class="comment-box">
-      <p class="comment-name">test@example.com</p>
+      <p class="comment-name">${author}</p>
       <p>${text}</p>
     </div>
   `);
