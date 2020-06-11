@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body onload="fetchContent(); loginStatus();">
+  <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div id="content">
         <button
@@ -111,6 +111,10 @@
       <div id="right-div">
         <img src="/images/profile.jpg" alt="Picture of me" id="profile" />
       </div>
+    </section>
+
+    <section id="map-section">
+      <div id="map"></div>
     </section>
 
     <section id="projects">
@@ -228,5 +232,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvgargfjlQSCpEhH1043AbLL19f6q-lxs"></script>
   </body>
 </html>
