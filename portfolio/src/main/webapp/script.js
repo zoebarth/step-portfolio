@@ -110,9 +110,39 @@ function handleSubmit(e) {
 /** Creates a map and adds it to the page. */
 function createMap() {
   const map = new google.maps.Map($('#map')[0], {
-    center: { lat: 37.422, lng: -122.084 },
-    zoom: 16,
+    center: { lat: 41.8719, lng: 12.5674 },
+    zoom: 2,
+    mapTypeId: 'hybrid',
   });
+
+  const places = [
+    [31.0, -100.0, 'Texas'],
+    [36.084621, -96.921387, 'Oklahoma'],
+    [36.778259, -119.417931, 'California'],
+    [39.41922, -111.950684, 'Utah'],
+    [44.5, -89.5, 'Wisconsin'],
+    [44.182205, -84.506836, 'Michigan'],
+    [32.157435, -82.907123, 'Georgia'],
+    [35.759573, -79.0193, 'North Carolina'],
+    [37.431573, -78.656894, 'Virginia'],
+    [40.058324, -74.405661, 'New Jersey'],
+    [43.299428, -74.217933, 'New York'],
+    [42.407211, -71.382437, 'Massachusetts'],
+    [41.603221, -73.087749, 'Connecticut'],
+    [41.203322, -77.194525, 'Pennsylvania'],
+    [27.664827, -81.515754, 'Florida'],
+    [35.517491, -86.580447, 'Tennessee'],
+    [33.836081, -81.163725, 'South Carolina'],
+  ];
+
+  for (arr of places) {
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(arr[0], arr[1]),
+      map: map,
+      title: arr[2],
+    });
+    console.log(arr);
+  }
 }
 
 $('#comment-form').submit(handleSubmit);
