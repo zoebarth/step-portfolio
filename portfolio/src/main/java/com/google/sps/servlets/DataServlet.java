@@ -25,6 +25,9 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
@@ -36,8 +39,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  private final Gson gson = new Gson();
-  private final UserService userService = UserServiceFactory.getUserService();
+  private static final UserService userService = UserServiceFactory.getUserService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -55,15 +57,17 @@ public class DataServlet extends HttpServlet {
     }
 
     // Add comments to ArrayList.
-    ArrayList<String> comments = new ArrayList<String>();
+    JsonArray comments = new JsonArray();
     for (Entity entity : results.asIterable(fetch)) {
-      String text = (String) entity.getProperty("text");
-      comments.add(text);
+      JsonObject comment = new JsonObject();
+      comment.addProperty("author", (String) entity.getProperty("email"));
+      comment.addProperty("text", (String) entity.getProperty("text"));
+      comments.add(comment);
     }
 
     // Send response with comments written as json.
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
+    response.getWriter().println(comments);
   }
 
   @Override

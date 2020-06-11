@@ -48,19 +48,20 @@ async function fetchContent() {
   const messagesEl = $('#comments-container');
   messagesEl.empty();
   for (message of messages) {
-    messagesEl.append(createListElement(message));
+    messagesEl.append(createListElement(message.author, message.text));
   }
 }
 
 /**
  * Creates a <div> element containing author and comment.
- * @param {string} text The text to create list element with
+ * @param {string} author The author of the comment
+ * @param {string} text The text of the comment
  * @return {Element} a div element
  */
-function createListElement(text) {
-  return $(html`
+function createListElement(author, text) {
+  return $(`
     <div class="comment-box">
-      <p class="comment-name">test@example.com</p>
+      <p class="comment-name">${author}</p>
       <p>${text}</p>
     </div>
   `);
@@ -80,14 +81,17 @@ async function loginStatus() {
   if (login.loggedIn === true) {
     $('#drop-a-comment').show();
     $('#comment-form').show();
-    $('#logout-container').html(
-      `<p>You are currently logged in as ${login.userEmail}. Click <a href=${login.logoutUrl}>here</a> to sign out.<\p>`
-    );
+    $('#logout-container').html(`
+      <p>
+        You are currently logged in as ${login.userEmail}. Click
+        <a href=${login.logoutUrl}>here</a> to sign out.
+      </p>
+    `);
   } else {
     $('#login-here').show();
-    $('#login-container').html(
-      `<a href=${login.loginUrl} class="btn btn-dark">Login Here</a>`
-    );
+    $('#login-container').html(`
+      <a href=${login.loginUrl} class="btn btn-dark">Login Here</a>
+    `);
   }
 }
 
