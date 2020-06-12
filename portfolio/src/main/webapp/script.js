@@ -133,6 +133,17 @@ function createMap() {
     [27.664827, -81.515754, 'Florida'],
     [35.517491, -86.580447, 'Tennessee'],
     [33.836081, -81.163725, 'South Carolina'],
+    [40.463667, -3.74922, 'Spain'],
+    [46.227638, 2.213749, 'France'],
+    [39.399872, -8.224454, 'Portugal'],
+    [47.162494, 19.503304, 'Hungary'],
+    [49.817492, 15.472962, 'Czech Republic'],
+    [39.074208, 21.824312, 'Greece'],
+    [-40.900557, 174.885971, 'New Zealand'],
+    [-25.274398, 133.775136, 'Australia'],
+    [23.634501, -102.552784, 'Mexico'],
+    [56.130366, -106.346771, 'Canada'],
+    [9.748917, -83.753428, 'Costa Rica'],
   ];
 
   for (arr of places) {
@@ -141,7 +152,6 @@ function createMap() {
       map: map,
       title: arr[2],
     });
-    console.log(arr);
   }
 }
 
