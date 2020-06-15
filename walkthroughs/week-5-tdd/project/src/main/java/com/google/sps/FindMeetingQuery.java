@@ -14,10 +14,31 @@
 
 package com.google.sps;
 
-import java.util.Collection;
+import java.util.*;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    //List of unavailable times
+    Collection<TimeRange> unavailable = new ArrayList<TimeRange>();
+    //List of available times
+    Collection<TimeRange> available = new ArrayList<TimeRange>();
+
+    //Meeting info
+    Collection<String> meetingAttendees = request.getAttendees();
+    long meetingDuration = request.getDuration();
+
+    //Loop through events and if attendees match, then add range to unavailable times
+    for (Event e: events) {
+      if (!Collections.disjoint(meetingAttendees, e.getAttendees())) {
+        unavailable.add(e.getWhen());
+      }
+    }
+    
+    //If unavailable is empty, all day will be free
+    if (unavailable.isEmpty()) {
+      available.add(TimeRange.fromStartEnd(0, 1440, false));
+    }
+    
+    return available;
   }
 }
