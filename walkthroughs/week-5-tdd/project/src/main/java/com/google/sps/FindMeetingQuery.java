@@ -14,10 +14,58 @@
 
 package com.google.sps;
 
-import java.util.Collection;
+import java.util.*;
 
+/** 
+ * Class for finding meeting times
+ * @author Zoe Barth
+ * @version 1.0
+ */
 public final class FindMeetingQuery {
+  
+  /** 
+   * Returns a collection of available times for a meeting, given a collection of events and a meeting request.
+   * @param events the collection of events
+   * @param request the meeting request
+   * @return the collection of available times
+   */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    List<TimeRange> unavailable = new ArrayList<TimeRange>();
+    List<TimeRange> available = new ArrayList<TimeRange>();
+
+    Collection<String> meetingAttendees = request.getAttendees();
+    long meetingDuration = request.getDuration();
+
+    // If meeting duration is longer than a day, return an empty list.
+    if (meetingDuration > TimeRange.END_OF_DAY) {
+      return available;
+    }
+
+    // Loop through events and if attendees match, then add range to unavailable times.
+    for (Event e: events) {
+      if (!Collections.disjoint(meetingAttendees, e.getAttendees())) {
+        unavailable.add(e.getWhen());
+      }
+    }
+    
+    // Sort events by start time and add available times to list.
+    Collections.sort(unavailable, TimeRange.ORDER_BY_START);
+    int start = TimeRange.START_OF_DAY;
+    for (TimeRange time : unavailable) {
+      if (start + meetingDuration <= time.start()) {
+        available.add(TimeRange.fromStartEnd(start, time.start(), false));
+      }
+      // Check end time to account for when an event has an earlier start time but later end time.
+      if (time.end() > start) {
+        start = time.end();
+      }
+    }
+
+    // Add available time after all evenets.
+    if (start + meetingDuration <= TimeRange.END_OF_DAY) {
+      available.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
+    }
+    
+    return available;
   }
 }
