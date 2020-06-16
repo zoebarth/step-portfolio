@@ -16,7 +16,17 @@ package com.google.sps;
 
 import java.util.*;
 
+/** Class for finding meeting times
+ * @author Zoe Barth
+ * @version 1.0
+ */
 public final class FindMeetingQuery {
+  
+  /** Returns a collection of available times for a meeting, given a collection of events and a meeting request.
+   * @param events the collection of events
+   * @param request the meeting request
+   * @return the collection of available times
+   */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     List<TimeRange> unavailable = new ArrayList<TimeRange>();
     List<TimeRange> available = new ArrayList<TimeRange>();
