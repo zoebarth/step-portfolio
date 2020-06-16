@@ -18,25 +18,40 @@ import java.util.*;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    //List of unavailable times
-    Collection<TimeRange> unavailable = new ArrayList<TimeRange>();
-    //List of available times
-    Collection<TimeRange> available = new ArrayList<TimeRange>();
+    List<TimeRange> unavailable = new ArrayList<TimeRange>();
+    List<TimeRange> available = new ArrayList<TimeRange>();
 
-    //Meeting info
     Collection<String> meetingAttendees = request.getAttendees();
     long meetingDuration = request.getDuration();
 
-    //Loop through events and if attendees match, then add range to unavailable times
+    // If meeting duration is longer than a day, return an empty list
+    if (meetingDuration > TimeRange.END_OF_DAY) {
+      return available;
+    }
+
+    // Loop through events and if attendees match, then add range to unavailable times
     for (Event e: events) {
       if (!Collections.disjoint(meetingAttendees, e.getAttendees())) {
         unavailable.add(e.getWhen());
       }
     }
     
-    //If unavailable is empty, all day will be free
-    if (unavailable.isEmpty()) {
-      available.add(TimeRange.fromStartEnd(0, 1440, false));
+    // Sort events by start time and add available times to list
+    Collections.sort(unavailable, TimeRange.ORDER_BY_START);
+    int start = TimeRange.START_OF_DAY;
+    for (TimeRange time : unavailable) {
+      if (start + meetingDuration <= time.start()) {
+        available.add(TimeRange.fromStartEnd(start, time.start(), false));
+      }
+      // Check end time to account for nested events
+      if (time.end() > start) {
+        start = time.end();
+      }
+    }
+
+    // Add available time after all evenets
+    if (start + meetingDuration <= TimeRange.END_OF_DAY) {
+      available.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
     }
     
     return available;
