@@ -29,9 +29,11 @@ public final class FindMeetingQuery {
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     List<TimeRange> unavailable = new ArrayList<TimeRange>();
+    List<TimeRange> optionalUnavailable = new ArrayList<TimeRange>();
     List<TimeRange> available = new ArrayList<TimeRange>();
 
     Collection<String> meetingAttendees = request.getAttendees();
+    Collection<String> optionalAttendees = request.getOptionalAttendees();
     long meetingDuration = request.getDuration();
 
     // If meeting duration is longer than a day, return an empty list
@@ -43,6 +45,8 @@ public final class FindMeetingQuery {
     for (Event e: events) {
       if (!Collections.disjoint(meetingAttendees, e.getAttendees())) {
         unavailable.add(e.getWhen());
+      } else if (!Collections.disjoint(optionalAttendees, e.getAttendees())) {
+        optionalUnavailable.add(e.getWhen());
       }
     }
     
