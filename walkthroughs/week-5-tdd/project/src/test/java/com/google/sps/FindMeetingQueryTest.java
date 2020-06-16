@@ -219,7 +219,32 @@ public final class FindMeetingQueryTest {
     // Options : 
 
     Collection<Event> events = Arrays.asList(
-        new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_2_HOUR),
+        new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0900AM, false),
+            Arrays.asList(PERSON_A)),
+        new Event("Event 2", TimeRange.fromStartEnd(TIME_0900AM, TimeRange.END_OF_DAY, true),
+            Arrays.asList(PERSON_B)));
+
+    MeetingRequest request = new MeetingRequest(Arrays.asList(), DURATION_30_MINUTES);
+    request.addOptionalAttendee(PERSON_A);
+    request.addOptionalAttendee(PERSON_B);
+
+    Collection<TimeRange> actual = query.query(events, request);
+    Collection<TimeRange> expected = Arrays.asList();
+
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
+  public void optionalAttendeeOverlap() {
+    // Have each optional person have different events with ovelapping times. We should see no options since there's not an open time.
+    //
+    // Events  : |--A--|
+    //               |-----------B-------------|
+    // Day     : |-----------------------------|
+    // Options : 
+
+    Collection<Event> events = Arrays.asList(
+        new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_1100AM, false),
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartEnd(TIME_0900AM, TimeRange.END_OF_DAY, true),
             Arrays.asList(PERSON_B)));
