@@ -16,15 +16,15 @@ package com.google.sps;
 
 import java.util.*;
 
-/** 
+/**
  * Class for finding meeting times
  * @author Zoe Barth
  * @version 1.0
  */
 public final class FindMeetingQuery {
-  
-  /** 
-   * Returns a collection of available times for a meeting, given a collection of events and a meeting request.
+  /**
+   * Returns a collection of available times for a meeting, given a collection of events and a
+   * meeting request.
    * @param events the collection of events
    * @param request the meeting request
    * @return the collection of available times
@@ -47,8 +47,9 @@ public final class FindMeetingQuery {
       return available;
     }
 
-    // Loop through events and if attendees match, then add range to unavailable times for both optional and non-optional.
-    for (Event e: events) {
+    // Loop through events and if attendees match, then add range to unavailable times for both
+    // optional and non-optional.
+    for (Event e : events) {
       if (!Collections.disjoint(meetingAttendees, e.getAttendees())) {
         unavailable.add(e.getWhen());
         optionalUnavailable.add(e.getWhen());
@@ -60,7 +61,8 @@ public final class FindMeetingQuery {
 
     // First operation is with both optional and non-optional attendees.
 
-    // Sort events with optional and non-optional attendees by start time and add available times to list.
+    // Sort events with optional and non-optional attendees by start time and add available times to
+    // list.
     Collections.sort(optionalUnavailable, TimeRange.ORDER_BY_START);
     int start = TimeRange.START_OF_DAY;
     for (TimeRange time : optionalUnavailable) {
@@ -78,12 +80,13 @@ public final class FindMeetingQuery {
       optionalAvailable.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
     }
 
-    // If there are times available with optional attendees or the meeting has no non-optional attendees, return.
+    // If there are times available with optional attendees or the meeting has no non-optional
+    // attendees, return.
     if (!optionalAvailable.isEmpty() || meetingAttendees.isEmpty()) {
       return optionalAvailable;
-    } else { 
+    } else {
       // If there is no suitable time with optional attendees, try only with non-optional attendees.
-    
+
       // Sort events by start time and add available times to list.
       Collections.sort(unavailable, TimeRange.ORDER_BY_START);
       start = TimeRange.START_OF_DAY;
@@ -101,9 +104,8 @@ public final class FindMeetingQuery {
       if (start + meetingDuration <= TimeRange.END_OF_DAY) {
         available.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
       }
-      
-      return available;
-      }
 
+      return available;
+    }
   }
 }
