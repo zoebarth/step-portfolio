@@ -60,25 +60,7 @@ public final class FindMeetingQuery {
     }
 
     // First operation is with both optional and non-optional attendees.
-
-    // Sort events with optional and non-optional attendees by start time and add available times to
-    // list.
-    Collections.sort(optionalUnavailable, TimeRange.ORDER_BY_START);
-    int start = TimeRange.START_OF_DAY;
-    for (TimeRange time : optionalUnavailable) {
-      if (start + meetingDuration <= time.start()) {
-        optionalAvailable.add(TimeRange.fromStartEnd(start, time.start(), false));
-      }
-      // Check end time to account for when an event has an earlier start time but later end time.
-      if (time.end() > start) {
-        start = time.end();
-      }
-    }
-
-    // Add available time after all evenets.
-    if (start + meetingDuration <= TimeRange.END_OF_DAY) {
-      optionalAvailable.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
-    }
+    findAvailableTimes(optionalAvailable, optionalUnavailable, meetingDuration);
 
     // If there are times available with optional attendees or the meeting has no non-optional
     // attendees, return.
@@ -86,26 +68,35 @@ public final class FindMeetingQuery {
       return optionalAvailable;
     } else {
       // If there is no suitable time with optional attendees, try only with non-optional attendees.
-
-      // Sort events by start time and add available times to list.
-      Collections.sort(unavailable, TimeRange.ORDER_BY_START);
-      start = TimeRange.START_OF_DAY;
-      for (TimeRange time : unavailable) {
-        if (start + meetingDuration <= time.start()) {
-          available.add(TimeRange.fromStartEnd(start, time.start(), false));
-        }
-        // Check end time to account for when an event has an earlier start time but later end time.
-        if (time.end() > start) {
-          start = time.end();
-        }
-      }
-
-      // Add available time after all evenets.
-      if (start + meetingDuration <= TimeRange.END_OF_DAY) {
-        available.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
-      }
-
+      findAvailableTimes(available, unavailable, meetingDuration);
       return available;
+    }
+  }
+
+  /**
+   * Private helper method to find available times for a meeting given list of unavailable times and
+   * meeting duration
+   * @param available the list available times will be added to
+   * @param unavailable the list of unavailable times
+   * @param meetingDuration the length of the meeting
+   */
+  private void findAvailableTimes(
+      List<TimeRange> available, List<TimeRange> unavailable, long meetingDuration) {
+    // Sort events by start time and add available times to list.
+    Collections.sort(unavailable, TimeRange.ORDER_BY_START);
+    int start = TimeRange.START_OF_DAY;
+    for (TimeRange time : unavailable) {
+      if (start + meetingDuration <= time.start()) {
+        available.add(TimeRange.fromStartEnd(start, time.start(), false));
+      }
+      // Check end time to account for when an event has an earlier start time but later end time.
+      if (time.end() > start) {
+        start = time.end();
+      }
+    }
+    // Add available time after all evenets.
+    if (start + meetingDuration <= TimeRange.END_OF_DAY) {
+      available.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
     }
   }
 }
