@@ -14,7 +14,10 @@
 
 package com.google.sps;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Class for finding meeting times
